@@ -1,0 +1,400 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const featureCards = [
+  {
+    title: '自动识别验证码',
+    description: '自动识别微博登录和采集过程中的验证码，尽量减少人工干预，自动跳过验证流程。',
+  },
+  {
+    title: '微博 M 端协议采集',
+    description: '通过微博 M 端协议抓取数据，覆盖微博正文、评论、转发、视频等内容，采集更完整。',
+  },
+  {
+    title: '任务化批量备份',
+    description: '支持账号管理、任务管理、备份记录与重复执行，适合长期持续备份微博数据。',
+  },
+];
+
+const capabilityTags = ['微博正文', '评论', '转发', '视频', '发布时间', '楼中楼回复', '账号管理', '备份记录'];
+
+const appShots = [
+  {
+    src: '/images/weibo/home.png',
+    alt: '微博克隆器首页',
+    title: '首页总览',
+    description: '账号、任务、激活码、使用记录统一管理。',
+  },
+  {
+    src: '/images/weibo/tasks.png',
+    alt: '微博克隆器任务管理',
+    title: '任务管理',
+    description: '任务进度、保存条数、剩余次数一眼可见。',
+  },
+  {
+    src: '/images/weibo/create-task.png',
+    alt: '微博克隆器创建任务',
+    title: '创建任务',
+    description: '按微博 M 平台创建采集任务，可配置评论与采集条数。',
+  },
+  {
+    src: '/images/weibo/account.png',
+    alt: '微博克隆器新增账号',
+    title: '账号管理',
+    description: '绑定微博账号 Cookies，便于后续持续采集。',
+  },
+  {
+    src: '/images/weibo/history.png',
+    alt: '微博克隆器备份记录',
+    title: '备份记录',
+    description: '按时间查看历史任务与每次保存结果。',
+  },
+];
+---
+
+<Layout
+  title="微博克隆器 - 完整备份微博、评论、转发、视频"
+  description="微博专版客户端，支持自动识别验证码、自动跳过验证，基于微博 M 端协议完整采集微博、评论、转发、视频等内容。"
+  keywords="微博克隆器,微博备份,微博采集,微博评论采集,微博转发采集,微博视频下载,微博验证码"
+  image="/images/weibo/home.png"
+  lang="zh-CN"
+>
+  <main>
+    <header class="sticky top-0 z-50 border-b border-border/60 bg-background/75 backdrop-blur-xl">
+      <div class="container flex h-16 items-center justify-between gap-4">
+        <a href="/" class="flex items-center gap-3 font-semibold text-foreground">
+          <img src="/favicon.svg" alt="微博克隆器" class="h-8 w-8 rounded-lg" />
+          <div>
+            <div class="text-sm text-foreground/70">ByteFuse 出品</div>
+            <div class="text-base">微博克隆器</div>
+          </div>
+        </a>
+
+        <nav class="hidden items-center gap-6 text-sm text-foreground/75 md:flex">
+          <a href="#features" class="transition hover:text-primary">产品优势</a>
+          <a href="#demo" class="transition hover:text-primary">软件截图</a>
+          <a href="#download" class="transition hover:text-primary">下载</a>
+          <a
+            href="https://blog.bytefuse.cn/M2XYdbunIouhGsxxNOkcfdiGnvh"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="transition hover:text-primary"
+          >
+            文档
+          </a>
+        </nav>
+
+        <div class="flex items-center gap-2">
+          <a
+            id="header-download"
+            href="#download"
+            class="rounded-full bg-primary px-4 py-2 text-sm font-medium text-primary-foreground shadow-lg shadow-primary/20 transition hover:-translate-y-0.5"
+          >
+            下载客户端
+          </a>
+          <button
+            id="mobile-menu-btn"
+            class="rounded-lg border border-border/70 p-2 text-foreground md:hidden"
+            aria-label="打开菜单"
+          >
+            <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <nav id="mobile-menu" class="hidden border-t border-border/60 bg-background/95 px-4 py-4 text-sm md:hidden">
+        <div class="container flex flex-col gap-3">
+          <a href="#features" class="transition hover:text-primary">产品优势</a>
+          <a href="#demo" class="transition hover:text-primary">软件截图</a>
+          <a href="#download" class="transition hover:text-primary">下载</a>
+          <a
+            href="https://blog.bytefuse.cn/M2XYdbunIouhGsxxNOkcfdiGnvh"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="transition hover:text-primary"
+          >
+            文档
+          </a>
+        </div>
+      </nav>
+    </header>
+
+    <section class="container py-16 md:py-24">
+      <div class="grid items-center gap-10 lg:grid-cols-[1.05fr_0.95fr]">
+        <div>
+          <div class="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/10 px-4 py-2 text-sm text-primary">
+            <span class="h-2 w-2 rounded-full bg-primary"></span>
+            微博专版备份工具
+          </div>
+
+          <h1 class="mt-6 text-4xl font-bold tracking-tight text-foreground md:text-6xl">
+            完整备份微博数据
+            <span class="block text-primary">自动跳过验证码验证</span>
+          </h1>
+
+          <p class="mt-5 max-w-2xl text-base leading-8 text-muted-foreground md:text-lg">
+            这是一个专门为微博内容采集与本地备份设计的工具。通过微博 M 端协议，可更完整地采集微博、评论、转发、视频等数据，尽量减少遗漏。
+          </p>
+
+          <div class="mt-6 flex flex-wrap gap-3">
+            {capabilityTags.map((item) => (
+              <span class="rounded-full border border-border/80 bg-white/90 px-4 py-2 text-sm text-foreground/80 shadow-sm">
+                {item}
+              </span>
+            ))}
+          </div>
+
+          <div class="mt-8 flex flex-col gap-3 sm:flex-row">
+            <a
+              id="hero-download"
+              href="#download"
+              class="rounded-2xl bg-primary px-6 py-3 text-center font-medium text-primary-foreground shadow-xl shadow-primary/20 transition hover:-translate-y-0.5"
+            >
+              直接下载使用
+            </a>
+            <a
+              href="#demo"
+              class="rounded-2xl border border-border/80 bg-white/80 px-6 py-3 text-center font-medium text-foreground transition hover:border-primary/30 hover:text-primary"
+            >
+              查看软件截图
+            </a>
+          </div>
+
+          <div class="mt-8 grid gap-4 sm:grid-cols-2">
+            <div class="glass rounded-2xl p-5">
+              <div class="text-sm font-semibold text-foreground">自动识别验证码</div>
+              <p class="mt-2 text-sm leading-7 text-muted-foreground">
+                面向微博验证场景做了专项优化，减少卡在验证码步骤的情况。
+              </p>
+            </div>
+            <div class="glass rounded-2xl p-5">
+              <div class="text-sm font-semibold text-foreground">完整采集不遗漏</div>
+              <p class="mt-2 text-sm leading-7 text-muted-foreground">
+                基于微博 M 端协议，适合做长期、稳定、可重复的微博备份。
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="relative">
+          <div class="absolute inset-0 -z-10 rounded-[2rem] bg-gradient-to-br from-orange-300/30 via-rose-200/20 to-transparent blur-3xl"></div>
+          <div class="glass overflow-hidden rounded-[2rem] border border-white/70 p-3 shadow-2xl shadow-orange-100/60">
+            <img
+              src="/images/weibo/home.png"
+              alt="微博克隆器首页截图"
+              class="w-full rounded-[1.35rem] border border-border/50"
+              loading="eager"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="features" class="container py-8 md:py-16">
+      <div class="max-w-2xl">
+        <h2 class="text-2xl font-bold tracking-tight md:text-4xl">这版微博工具重点优化了什么</h2>
+        <p class="mt-3 text-base leading-8 text-muted-foreground">
+          首页文案围绕实际使用价值来组织，突出验证码处理、微博 M 端完整采集，以及适合反复执行的任务化备份流程。
+        </p>
+      </div>
+
+      <div class="mt-10 grid gap-6 md:grid-cols-3">
+        {featureCards.map((feature) => (
+          <article class="glass rounded-3xl p-6">
+            <div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-primary/10 text-lg font-semibold text-primary">
+              {feature.title.slice(0, 2)}
+            </div>
+            <h3 class="mt-5 text-xl font-semibold text-foreground">{feature.title}</h3>
+            <p class="mt-3 text-sm leading-7 text-muted-foreground">{feature.description}</p>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section class="container py-8 md:py-16">
+      <div class="grid gap-6 lg:grid-cols-[0.95fr_1.05fr]">
+        <div class="glass rounded-[2rem] p-6 md:p-8">
+          <div class="text-sm font-semibold uppercase tracking-[0.22em] text-primary/80">Why It Works</div>
+          <h2 class="mt-4 text-2xl font-bold tracking-tight md:text-4xl">更适合微博备份的流程设计</h2>
+          <div class="mt-8 space-y-6">
+            <div class="rounded-2xl border border-border/70 bg-white/70 p-5">
+              <div class="text-base font-semibold">1. 先登录并保存账号</div>
+              <p class="mt-2 text-sm leading-7 text-muted-foreground">
+                将微博账号信息保存到客户端，后续执行任务时不需要重复配置。
+              </p>
+            </div>
+            <div class="rounded-2xl border border-border/70 bg-white/70 p-5">
+              <div class="text-base font-semibold">2. 创建微博 M 端采集任务</div>
+              <p class="mt-2 text-sm leading-7 text-muted-foreground">
+                可设置平台 ID、采集条数、拉取间隔，并决定是否抓取评论内容。
+              </p>
+            </div>
+            <div class="rounded-2xl border border-border/70 bg-white/70 p-5">
+              <div class="text-base font-semibold">3. 查看进度与备份记录</div>
+              <p class="mt-2 text-sm leading-7 text-muted-foreground">
+                任务执行完成后可以查看保存条数和历史记录，适合重复增量备份。
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid gap-6 sm:grid-cols-2">
+          {appShots.slice(1).map((shot) => (
+            <figure class="glass overflow-hidden rounded-[1.75rem] p-3">
+              <img src={shot.src} alt={shot.alt} class="h-auto w-full rounded-[1.1rem] border border-border/60" loading="lazy" />
+              <figcaption class="px-2 pb-2 pt-4">
+                <div class="font-semibold text-foreground">{shot.title}</div>
+                <div class="mt-1 text-sm leading-7 text-muted-foreground">{shot.description}</div>
+              </figcaption>
+            </figure>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <section id="demo" class="container py-12 md:py-20">
+      <div class="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
+        <div class="max-w-2xl">
+          <h2 class="text-2xl font-bold tracking-tight md:text-4xl">软件截图与采集效果</h2>
+          <p class="mt-3 text-base leading-8 text-muted-foreground">
+            下面这组截图覆盖了首页、任务管理、创建任务、账号管理、备份记录，以及评论采集展开效果。
+          </p>
+        </div>
+        <div class="text-sm text-muted-foreground">
+          <span id="download-version">下载地址会自动读取最新版本</span>
+        </div>
+      </div>
+
+      <div class="mt-10 grid items-start gap-6 lg:grid-cols-[1.05fr_0.95fr]">
+        <figure class="glass self-start overflow-hidden rounded-[2rem] p-3">
+          <img src="/images/weibo/home.png" alt="微博克隆器首页展示" class="w-full rounded-[1.3rem] border border-border/60" loading="lazy" />
+          <figcaption class="px-3 pb-3 pt-5">
+            <div class="text-lg font-semibold text-foreground">微博专版客户端首页</div>
+            <p class="mt-2 text-sm leading-7 text-muted-foreground">
+              首页聚合账号管理、任务管理、激活与记录能力，适合直接进入日常备份流程。
+            </p>
+          </figcaption>
+        </figure>
+
+        <div class="grid gap-6">
+          <figure class="glass overflow-hidden rounded-[2rem] p-3">
+            <img
+              src="/images/weibo/comments-list.png"
+              alt="微博采集结果中的评论列表"
+              class="w-full rounded-[1.3rem] border border-border/60"
+              loading="lazy"
+            />
+            <figcaption class="px-3 pb-3 pt-5">
+              <div class="text-lg font-semibold text-foreground">评论列表采集结果</div>
+              <p class="mt-2 text-sm leading-7 text-muted-foreground">
+                已保存的微博内容可以按评论块查看，便于核验评论是否抓取成功。
+              </p>
+            </figcaption>
+          </figure>
+
+          <figure class="glass overflow-hidden rounded-[2rem] p-3">
+            <img
+              src="/images/weibo/comments-expanded.png"
+              alt="微博采集结果中的展开评论"
+              class="w-full rounded-[1.3rem] border border-border/60"
+              loading="lazy"
+            />
+            <figcaption class="px-3 pb-3 pt-5">
+              <div class="text-lg font-semibold text-foreground">展开后的评论与回复</div>
+              <p class="mt-2 text-sm leading-7 text-muted-foreground">
+                评论展开后可继续查看回复内容，更适合做微博讨论区的完整备份。
+              </p>
+            </figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section id="download" class="container py-12 md:py-24">
+      <div class="overflow-hidden rounded-[2rem] border border-primary/15 bg-gradient-to-br from-orange-50 via-white to-rose-50 p-8 shadow-xl shadow-orange-100/40 md:p-12">
+        <div class="grid gap-8 lg:grid-cols-[1fr_auto] lg:items-center">
+          <div>
+            <div class="text-sm font-semibold uppercase tracking-[0.22em] text-primary/80">Download</div>
+            <h2 class="mt-4 text-2xl font-bold tracking-tight md:text-4xl">立即下载微博克隆器</h2>
+            <div class="mt-6 flex flex-wrap gap-4 text-sm text-muted-foreground">
+              <span class="rounded-full border border-border/80 bg-white/90 px-4 py-2">Windows 客户端</span>
+              <span class="rounded-full border border-border/80 bg-white/90 px-4 py-2">自动识别验证码</span>
+              <span class="rounded-full border border-border/80 bg-white/90 px-4 py-2">微博 M 端完整采集</span>
+            </div>
+          </div>
+
+          <div class="flex flex-col gap-3">
+            <a
+              id="cta-download"
+              href="#download"
+              class="rounded-2xl bg-primary px-8 py-4 text-center text-base font-semibold text-primary-foreground shadow-xl shadow-primary/25 transition hover:-translate-y-0.5"
+            >
+              下载客户端
+            </a>
+            <a
+              href="tencent://message/?uin=2246855973&Site=&Menu=yes"
+              class="rounded-2xl border border-border/80 bg-white/90 px-8 py-4 text-center text-sm font-medium text-foreground transition hover:border-primary/30 hover:text-primary"
+            >
+              联系 QQ 2246855973
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="container py-10 text-sm text-muted-foreground">
+      <div class="flex flex-col gap-3 border-t border-border/70 pt-6 sm:flex-row sm:items-center sm:justify-between">
+        <span>Copyright 2026 ByteFuse. 微博克隆器专版 landing page。</span>
+        <a href="tencent://message/?uin=2246855973&Site=&Menu=yes" class="transition hover:text-primary">
+          联系 QQ: 2246855973
+        </a>
+      </div>
+    </footer>
+  </main>
+
+  <script is:inline>
+    (async function () {
+      try {
+        const res = await fetch('https://www.bytefuse.cn/clonerweibo.json', { cache: 'no-store' });
+        const data = await res.json();
+        const url = data && data.app_download_url ? String(data.app_download_url) : '';
+        const version = data && data.app_version ? String(data.app_version) : '';
+
+        if (version) {
+          const versionEl = document.getElementById('download-version');
+          if (versionEl) versionEl.textContent = `当前版本 ${version}`;
+        }
+
+        if (!url) return;
+
+        for (const id of ['hero-download', 'cta-download', 'header-download']) {
+          const el = document.getElementById(id);
+          if (!el) continue;
+          el.setAttribute('href', url);
+          el.setAttribute('target', '_blank');
+          el.setAttribute('rel', 'noopener noreferrer');
+        }
+      } catch (e) {
+        // ignore network errors and keep fallback anchors
+      }
+    })();
+
+    (function () {
+      const btn = document.getElementById('mobile-menu-btn');
+      const menu = document.getElementById('mobile-menu');
+      if (!btn || !menu) return;
+
+      btn.addEventListener('click', () => {
+        menu.classList.toggle('hidden');
+      });
+
+      menu.querySelectorAll('a').forEach((link) => {
+        link.addEventListener('click', () => {
+          menu.classList.add('hidden');
+        });
+      });
+    })();
+  </script>
+</Layout>

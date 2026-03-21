@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://webcloner.bytefuse.cn/sitemap.xml

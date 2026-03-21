@@ -1,0 +1,70 @@
+---
+import '../styles/globals.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+  keywords?: string;
+  image?: string;
+  url?: string;
+  lang?: string;
+}
+
+const {
+  title = '微博克隆器 - 完整备份微博内容',
+  description = '微博克隆器是一个专为微博备份设计的客户端，支持自动识别验证码、自动跳过验证，完整采集微博、评论、转发、视频等内容到本地。',
+  keywords = '微博克隆器,微博备份,微博采集,微博评论采集,微博转发采集,微博视频下载',
+  image = '/images/weibo/home.png',
+  url = 'https://webcloner.bytefuse.cn',
+  lang = 'zh-CN',
+} = Astro.props;
+
+const canonicalUrl = new URL(Astro.url.pathname, url).href;
+---
+
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="canonical" href={canonicalUrl} />
+    <meta name="generator" content={Astro.generator} />
+
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="keywords" content={keywords} />
+    <meta name="author" content="ByteFuse" />
+    <meta name="robots" content="index, follow" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={image} />
+    <meta property="og:locale" content={lang} />
+    <meta property="og:site_name" content="微博克隆器" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content={canonicalUrl} />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={image} />
+
+    <script is:inline type="application/ld+json">
+      {JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'SoftwareApplication',
+        name: '微博克隆器',
+        applicationCategory: 'UtilitiesApplication',
+        operatingSystem: 'Windows',
+        description,
+      })}
+    </script>
+
+    <script is:inline src="https://at.alicdn.com/t/c/font_5026634_g3jvfo2f99t.js"></script>
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>
